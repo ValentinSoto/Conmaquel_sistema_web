@@ -100,21 +100,11 @@ El funcionamiento general del sistema sigue el siguiente proceso:
 
 # Figura
 
-**Figura 2. Arquitectura del Sistema (Cliente – Servidor – Base de Datos)**
+## Figura 2. Arquitectura del Sistema
 
-> Inserta aquí la imagen generada anteriormente.
-
-```text
-assets/uml/arquitectura-del-sistema.png
-```
-
-En GitHub puedes mostrarla con:
-
-```markdown
 ![Arquitectura del Sistema](../assets/uml/arquitectura-del-sistema.png)
-```
 
----
+**Figura 2.** Arquitectura del Sistema (Cliente – Servidor – Base de datos).
 
 # Conclusión
 
