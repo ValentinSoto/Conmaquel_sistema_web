@@ -148,4 +148,22 @@ Durante el diseño se consideraron los siguientes principios de Ingeniería de S
 
 A continuación se presenta el Diagrama de Clases UML del Sistema Web de Gestión Integral para Conmaquel.
 
-![Di
+![Diagrama de Clases](../assets/uml/diagrama-de-clases.png)
+
+**Figura 11.** Diagrama de Clases UML del Sistema Web de Gestión Integral para Conmaquel.
+
+---
+
+# Beneficios
+
+- Facilita el desarrollo del software.
+- Define claramente las responsabilidades de cada clase.
+- Permite identificar las relaciones entre los objetos.
+- Sirve como guía para la implementación del código.
+- Favorece el mantenimiento y futuras ampliaciones del sistema.
+
+---
+
+# Conclusión
+
+El Diagrama de Clases UML proporciona una representación estructurada de los componentes del Sistema Web de Gestión Integral para Conmaquel. Gracias a este modelo es posible comprender la organización interna del sistema y establecer una base sólida para su implementación siguiendo principios de diseño orientado a objetos.
