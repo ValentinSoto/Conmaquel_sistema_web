@@ -1,1 +1,566 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Conmaquel · Panel Administrativo</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+  :root{
+    --navy-950:#0A1A33;
+    --navy-900:#0D2247;
+    --navy-800:#12305F;
+    --navy-700:#1A3E77;
+    --navy-accent:#2C5AA0;
+    --white:#FFFFFF;
+    --bg:#F3F5F9;
+    --card:#FFFFFF;
+    --border:#E4E8F0;
+    --text-900:#141B2E;
+    --text-600:#5B6478;
+    --text-400:#8B93A7;
+    --success:#16A34A;
+    --success-bg:#E9F9EF;
+    --warning:#F59E0B;
+    --warning-bg:#FEF3E2;
+    --error:#DC2626;
+    --error-bg:#FDECEC;
+    --info:#2C5AA0;
+    --info-bg:#EAF1FB;
+    --radius:12px;
+    --shadow-sm:0 1px 2px rgba(13,34,71,.06);
+    --shadow-md:0 4px 16px rgba(13,34,71,.08);
+    --sidebar-w:264px;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    font-family:'Inter',system-ui,sans-serif;
+    background:var(--bg);
+    color:var(--text-900);
+    -webkit-font-smoothing:antialiased;
+  }
+  a{text-decoration:none;color:inherit;}
+  ul{list-style:none;margin:0;padding:0;}
+
+  /* ===== SIDEBAR ===== */
+  .sidebar{
+    position:fixed; top:0; left:0; bottom:0;
+    width:var(--sidebar-w);
+    background:linear-gradient(180deg,var(--navy-950) 0%,var(--navy-900) 100%);
+    display:flex; flex-direction:column;
+    z-index:100;
+    transition:transform .25s ease;
+  }
+  .sidebar-brand{
+    display:flex; align-items:center; gap:12px;
+    padding:22px 22px 20px;
+    border-bottom:1px solid rgba(255,255,255,.08);
+  }
+  .brand-mark{
+    width:38px;height:38px;border-radius:10px;
+    background:linear-gradient(135deg,var(--navy-accent),#4C7FD6);
+    display:flex;align-items:center;justify-content:center;
+    font-weight:800; color:#fff; font-size:15px;
+    box-shadow:0 4px 10px rgba(44,90,160,.4);
+    flex-shrink:0;
+  }
+  .brand-text{line-height:1.1;}
+  .brand-text strong{display:block;color:#fff;font-size:16px;font-weight:700;letter-spacing:.2px;}
+  .brand-text span{display:block;color:#8FA3C7;font-size:11px;font-weight:500;letter-spacing:.4px;text-transform:uppercase;margin-top:2px;}
+
+  .sidebar-scroll{flex:1;overflow-y:auto;padding:16px 12px;}
+  .nav-section-label{
+    font-size:11px;font-weight:600;letter-spacing:.6px;text-transform:uppercase;
+    padding:14px 12px 6px; color:#5A6E96;
+  }
+  .nav-item{
+    display:flex; align-items:center; gap:12px;
+    padding:10px 12px; margin:2px 0;
+    border-radius:9px; color:#B7C4DE; font-size:14px; font-weight:500;
+    cursor:pointer; position:relative;
+    transition:background .15s, color .15s;
+  }
+  .nav-item i{width:18px; text-align:center; font-size:15px; color:#7C90BA;}
+  .nav-item:hover{background:rgba(255,255,255,.06); color:#fff;}
+  .nav-item:hover i{color:#fff;}
+  .nav-item.active{
+    background:linear-gradient(90deg,rgba(44,90,160,.55),rgba(44,90,160,.15));
+    color:#fff;
+  }
+  .nav-item.active i{color:#6FA1E8;}
+  .nav-item.active::before{
+    content:"";position:absolute;left:-12px;top:6px;bottom:6px;width:3px;
+    border-radius:3px;background:#6FA1E8;
+  }
+  .nav-item .badge{
+    margin-left:auto; background:var(--error); color:#fff;
+    font-size:10px; font-weight:700; padding:2px 7px; border-radius:20px;
+  }
+  .sidebar-footer{
+    padding:14px 20px 18px; border-top:1px solid rgba(255,255,255,.08);
+  }
+  .nav-item.logout{color:#E29999;}
+  .nav-item.logout i{color:#E29999;}
+  .nav-item.logout:hover{background:rgba(220,38,38,.12); color:#fff;}
+
+  /* ===== MAIN LAYOUT ===== */
+  .main{margin-left:var(--sidebar-w); min-height:100vh; display:flex; flex-direction:column;}
+
+  /* ===== TOPBAR ===== */
+  .topbar{
+    height:68px; background:var(--white); border-bottom:1px solid var(--border);
+    display:flex; align-items:center; gap:18px; padding:0 28px;
+    position:sticky; top:0; z-index:50;
+  }
+  .menu-toggle{
+    display:none; width:36px;height:36px;border-radius:8px;border:1px solid var(--border);
+    background:#fff; align-items:center; justify-content:center; cursor:pointer; color:var(--text-600);
+  }
+  .search-box{
+    flex:1; max-width:420px; position:relative;
+  }
+  .search-box i{position:absolute; left:14px; top:50%; transform:translateY(-50%); color:var(--text-400); font-size:13px;}
+  .search-box input{
+    width:100%; padding:9px 14px 9px 36px; border-radius:9px; border:1px solid var(--border);
+    background:var(--bg); font-family:inherit; font-size:13.5px; color:var(--text-900);
+    outline:none; transition:border-color .15s, background .15s;
+  }
+  .search-box input:focus{border-color:var(--navy-accent); background:#fff;}
+  .topbar-spacer{flex:1;}
+  .topbar-actions{display:flex; align-items:center; gap:8px;}
+  .icon-btn{
+    width:38px; height:38px; border-radius:9px; border:1px solid transparent;
+    background:transparent; display:flex; align-items:center; justify-content:center;
+    color:var(--text-600); font-size:15px; cursor:pointer; position:relative;
+    transition:background .15s, color .15s;
+  }
+  .icon-btn:hover{background:var(--bg); color:var(--navy-800);}
+  .icon-btn .dot{
+    position:absolute; top:7px; right:7px; width:8px; height:8px; border-radius:50%;
+    background:var(--error); border:2px solid #fff;
+  }
+  .theme-toggle{
+    display:flex; align-items:center; gap:6px; padding:5px; border-radius:20px;
+    background:var(--bg); border:1px solid var(--border); cursor:pointer;
+  }
+  .theme-toggle i{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--text-400);}
+  .theme-toggle i.on{background:var(--navy-900); color:#fff;}
+
+  .user-chip{
+    display:flex; align-items:center; gap:10px; padding:6px 10px 6px 6px;
+    border-radius:24px; border:1px solid var(--border); cursor:pointer; background:#fff;
+  }
+  .avatar{
+    width:32px;height:32px;border-radius:50%;
+    background:linear-gradient(135deg,var(--navy-accent),#5B8CDB);
+    color:#fff; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:12.5px;
+  }
+  .user-chip .info{line-height:1.1;}
+  .user-chip .info strong{display:block; font-size:13px; font-weight:600;}
+  .user-chip .info span{display:block; font-size:11px; color:var(--text-400);}
+  .user-chip i.chev{font-size:11px; color:var(--text-400); margin-left:2px;}
+
+  /* ===== PAGE HEADER / BREADCRUMB ===== */
+  .page-head{padding:24px 28px 4px;}
+  .breadcrumb{display:flex; align-items:center; gap:8px; font-size:12.5px; color:var(--text-400); margin-bottom:10px;}
+  .breadcrumb i{font-size:9px;}
+  .breadcrumb .current{color:var(--navy-800); font-weight:600;}
+  .page-title-row{display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:14px;}
+  .page-title-row h1{font-size:22px; font-weight:700; margin:0; letter-spacing:-.2px;}
+  .page-title-row p{margin:2px 0 0; font-size:13.5px; color:var(--text-600);}
+  .btn{
+    display:inline-flex; align-items:center; gap:8px; padding:10px 16px; border-radius:9px;
+    font-size:13.5px; font-weight:600; cursor:pointer; border:1px solid transparent; white-space:nowrap;
+  }
+  .btn-primary{background:var(--navy-900); color:#fff;}
+  .btn-primary:hover{background:var(--navy-800);}
+  .btn-outline{background:#fff; border-color:var(--border); color:var(--text-900);}
+  .btn-outline:hover{background:var(--bg);}
+
+  /* ===== CONTENT ===== */
+  .content{padding:20px 28px 40px; flex:1;}
+
+  .kpi-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:18px; margin-bottom:22px;}
+  .kpi-card{
+    background:var(--card); border:1px solid var(--border); border-radius:var(--radius);
+    padding:20px; box-shadow:var(--shadow-sm);
+  }
+  .kpi-top{display:flex; align-items:flex-start; justify-content:space-between; margin-bottom:14px;}
+  .kpi-icon{width:42px;height:42px;border-radius:10px;display:flex;align-items:center;justify-content:center; font-size:17px;}
+  .kpi-trend{font-size:12px; font-weight:700; display:flex; align-items:center; gap:4px; padding:3px 8px; border-radius:20px;}
+  .kpi-trend.up{color:var(--success); background:var(--success-bg);}
+  .kpi-trend.down{color:var(--error); background:var(--error-bg);}
+  .kpi-value{font-size:26px; font-weight:800; letter-spacing:-.5px; margin-bottom:2px;}
+  .kpi-label{font-size:13px; color:var(--text-600); font-weight:500;}
+
+  .grid-2{display:grid; grid-template-columns:2fr 1fr; gap:18px; margin-bottom:22px;}
+  .panel{
+    background:var(--card); border:1px solid var(--border); border-radius:var(--radius);
+    padding:22px; box-shadow:var(--shadow-sm);
+  }
+  .panel-head{display:flex; align-items:center; justify-content:space-between; margin-bottom:18px;}
+  .panel-head h3{margin:0; font-size:15px; font-weight:700;}
+  .panel-head .muted{font-size:12px; color:var(--text-400);}
+  .tabs{display:flex; gap:4px; background:var(--bg); padding:4px; border-radius:8px;}
+  .tabs span{padding:5px 12px; font-size:12px; font-weight:600; border-radius:6px; color:var(--text-600); cursor:pointer;}
+  .tabs span.active{background:#fff; color:var(--navy-900); box-shadow:var(--shadow-sm);}
+
+  .legend-row{display:flex; gap:18px; margin-top:14px; flex-wrap:wrap;}
+  .legend-item{display:flex; align-items:center; gap:7px; font-size:12.5px; color:var(--text-600);}
+  .legend-dot{width:9px;height:9px;border-radius:50%;}
+
+  .grid-3{display:grid; grid-template-columns:1.1fr 1fr 1fr; gap:18px;}
+
+  .activity-item{display:flex; gap:12px; padding:11px 0; border-bottom:1px solid var(--border);}
+  .activity-item:last-child{border-bottom:none; padding-bottom:0;}
+  .activity-dot{width:34px;height:34px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;}
+  .activity-text{font-size:13px; line-height:1.4;}
+  .activity-text strong{font-weight:600;}
+  .activity-time{font-size:11.5px; color:var(--text-400); margin-top:2px;}
+
+  table{width:100%; border-collapse:collapse; font-size:13px;}
+  thead th{
+    text-align:left; font-size:11px; font-weight:700; letter-spacing:.4px; text-transform:uppercase;
+    color:var(--text-400); padding:0 10px 10px; border-bottom:1px solid var(--border);
+  }
+  tbody td{padding:12px 10px; border-bottom:1px solid var(--border); vertical-align:middle;}
+  tbody tr:last-child td{border-bottom:none;}
+  .cell-main{font-weight:600; font-size:13px;}
+  .cell-sub{font-size:11.5px; color:var(--text-400);}
+  .status-pill{
+    display:inline-flex; align-items:center; gap:5px; padding:4px 10px; border-radius:20px;
+    font-size:11.5px; font-weight:700;
+  }
+  .status-pill.ok{background:var(--success-bg); color:var(--success);}
+  .status-pill.pending{background:var(--warning-bg); color:var(--warning);}
+  .status-pill.cancel{background:var(--error-bg); color:var(--error);}
+  .prod-row{display:flex; align-items:center; gap:12px; padding:11px 0; border-bottom:1px solid var(--border);}
+  .prod-row:last-child{border-bottom:none; padding-bottom:0;}
+  .prod-thumb{width:38px;height:38px;border-radius:9px;background:var(--bg); display:flex;align-items:center;justify-content:center;color:var(--navy-accent); font-size:15px; flex-shrink:0;}
+  .prod-bar-bg{height:5px; border-radius:4px; background:var(--border); margin-top:6px; overflow:hidden;}
+  .prod-bar{height:100%; border-radius:4px; background:linear-gradient(90deg,var(--navy-700),var(--navy-accent));}
+
+  footer.app-footer{
+    padding:16px 28px; border-top:1px solid var(--border); color:var(--text-400); font-size:12px;
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px;
+  }
+
+  @media (max-width:1200px){
+    .grid-2{grid-template-columns:1fr;}
+    .grid-3{grid-template-columns:1fr 1fr;}
+    .kpi-grid{grid-template-columns:repeat(2,1fr);}
+  }
+  @media (max-width:860px){
+    .sidebar{transform:translateX(-100%);}
+    .sidebar.open{transform:translateX(0); box-shadow:0 0 0 100vmax rgba(0,0,0,.35);}
+    .main{margin-left:0;}
+    .menu-toggle{display:flex;}
+    .search-box{display:none;}
+    .grid-3{grid-template-columns:1fr;}
+    .kpi-grid{grid-template-columns:1fr 1fr;}
+    .user-chip .info{display:none;}
+  }
+  @media (max-width:520px){
+    .kpi-grid{grid-template-columns:1fr;}
+    .content{padding:16px 14px 30px;}
+    .page-head{padding:18px 14px 4px;}
+    .topbar{padding:0 14px;}
+  }
+</style>
+</head>
+<body>
+
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-brand">
+    <div class="brand-mark">CQ</div>
+    <div class="brand-text">
+      <strong>Conmaquel</strong>
+      <span>Sistema de Gestión</span>
+    </div>
+  </div>
+  <div class="sidebar-scroll">
+    <div class="nav-section-label">Principal</div>
+    <ul>
+      <li class="nav-item active"><i class="fa-solid fa-gauge-high"></i>Dashboard</li>
+    </ul>
+    <div class="nav-section-label">Gestión</div>
+    <ul>
+      <li class="nav-item"><i class="fa-solid fa-users"></i>Usuarios</li>
+      <li class="nav-item"><i class="fa-solid fa-box"></i>Productos</li>
+      <li class="nav-item"><i class="fa-solid fa-tags"></i>Categorías</li>
+      <li class="nav-item"><i class="fa-solid fa-warehouse"></i>Inventario</li>
+      <li class="nav-item"><i class="fa-solid fa-calendar-check"></i>Reservas<span class="badge">5</span></li>
+      <li class="nav-item"><i class="fa-solid fa-cash-register"></i>Ventas</li>
+      <li class="nav-item"><i class="fa-solid fa-address-book"></i>Clientes</li>
+    </ul>
+    <div class="nav-section-label">Análisis</div>
+    <ul>
+      <li class="nav-item"><i class="fa-solid fa-chart-column"></i>Reportes</li>
+    </ul>
+    <div class="nav-section-label">Sistema</div>
+    <ul>
+      <li class="nav-item"><i class="fa-solid fa-gear"></i>Configuración</li>
+    </ul>
+  </div>
+  <div class="sidebar-footer">
+    <div class="nav-item logout"><i class="fa-solid fa-arrow-right-from-bracket"></i>Cerrar sesión</div>
+  </div>
+</aside>
+
+<div class="main">
+  <div class="topbar">
+    <div class="menu-toggle" id="menuToggle"><i class="fa-solid fa-bars"></i></div>
+    <div class="search-box">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <input type="text" placeholder="Buscar productos, clientes, ventas…">
+    </div>
+    <div class="topbar-spacer"></div>
+    <div class="topbar-actions">
+      <div class="theme-toggle">
+        <i class="fa-solid fa-sun on"></i>
+        <i class="fa-solid fa-moon"></i>
+      </div>
+      <div class="icon-btn"><i class="fa-regular fa-envelope"></i><span class="dot"></span></div>
+      <div class="icon-btn"><i class="fa-regular fa-bell"></i><span class="dot"></span></div>
+      <div class="user-chip">
+        <div class="avatar">VS</div>
+        <div class="info"><strong>Valentin Soto</strong><span>Administrador</span></div>
+        <i class="fa-solid fa-chevron-down chev"></i>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-head">
+    <div class="breadcrumb">
+      <span>Conmaquel</span><i class="fa-solid fa-chevron-right"></i><span class="current">Dashboard</span>
+    </div>
+    <div class="page-title-row">
+      <div>
+        <h1>Panel de control</h1>
+        <p>Resumen general de ventas, reservas e inventario — hoy, 20 de julio 2026</p>
+      </div>
+      <div style="display:flex; gap:10px;">
+        <button class="btn btn-outline"><i class="fa-solid fa-file-arrow-down"></i>Exportar</button>
+        <button class="btn btn-primary"><i class="fa-solid fa-plus"></i>Nueva venta</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="content">
+    <div class="kpi-grid">
+      <div class="kpi-card">
+        <div class="kpi-top">
+          <div class="kpi-icon" style="background:var(--info-bg); color:var(--info);"><i class="fa-solid fa-sack-dollar"></i></div>
+          <div class="kpi-trend up"><i class="fa-solid fa-arrow-up"></i>12.4%</div>
+        </div>
+        <div class="kpi-value">S/ 48,230</div>
+        <div class="kpi-label">Ventas del mes</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-top">
+          <div class="kpi-icon" style="background:var(--success-bg); color:var(--success);"><i class="fa-solid fa-calendar-check"></i></div>
+          <div class="kpi-trend up"><i class="fa-solid fa-arrow-up"></i>8.1%</div>
+        </div>
+        <div class="kpi-value">37</div>
+        <div class="kpi-label">Reservas activas</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-top">
+          <div class="kpi-icon" style="background:var(--warning-bg); color:var(--warning);"><i class="fa-solid fa-box-open"></i></div>
+          <div class="kpi-trend down"><i class="fa-solid fa-arrow-down"></i>3.2%</div>
+        </div>
+        <div class="kpi-value">214</div>
+        <div class="kpi-label">Productos en stock</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-top">
+          <div class="kpi-icon" style="background:var(--error-bg); color:var(--error);"><i class="fa-solid fa-user-group"></i></div>
+          <div class="kpi-trend up"><i class="fa-solid fa-arrow-up"></i>5.6%</div>
+        </div>
+        <div class="kpi-value">312</div>
+        <div class="kpi-label">Clientes registrados</div>
+      </div>
+    </div>
+
+    <div class="grid-2">
+      <div class="panel">
+        <div class="panel-head">
+          <div>
+            <h3>Ventas mensuales</h3>
+            <span class="muted">Comparativo de los últimos 7 meses</span>
+          </div>
+          <div class="tabs"><span class="active">Mensual</span><span>Semanal</span></div>
+        </div>
+        <canvas id="salesChart" height="90"></canvas>
+      </div>
+      <div class="panel">
+        <div class="panel-head">
+          <div>
+            <h3>Ventas por categoría</h3>
+            <span class="muted">Julio 2026</span>
+          </div>
+        </div>
+        <canvas id="categoryChart" height="200"></canvas>
+        <div class="legend-row">
+          <div class="legend-item"><span class="legend-dot" style="background:#12305F;"></span>Seguridad</div>
+          <div class="legend-item"><span class="legend-dot" style="background:#2C5AA0;"></span>Electrónica</div>
+          <div class="legend-item"><span class="legend-dot" style="background:#7CA6E0;"></span>Accesorios</div>
+          <div class="legend-item"><span class="legend-dot" style="background:#D8E3F5;"></span>Servicios</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid-3">
+      <div class="panel">
+        <div class="panel-head"><h3>Actividad reciente</h3></div>
+        <div class="activity-item">
+          <div class="activity-dot" style="background:var(--success-bg); color:var(--success);"><i class="fa-solid fa-check"></i></div>
+          <div>
+            <div class="activity-text"><strong>Venta #4821</strong> completada por Carlos Núñez</div>
+            <div class="activity-time">Hace 12 minutos</div>
+          </div>
+        </div>
+        <div class="activity-item">
+          <div class="activity-dot" style="background:var(--info-bg); color:var(--info);"><i class="fa-solid fa-calendar-plus"></i></div>
+          <div>
+            <div class="activity-text"><strong>Nueva reserva</strong> de instalación — cliente María Rojas</div>
+            <div class="activity-time">Hace 40 minutos</div>
+          </div>
+        </div>
+        <div class="activity-item">
+          <div class="activity-dot" style="background:var(--warning-bg); color:var(--warning);"><i class="fa-solid fa-triangle-exclamation"></i></div>
+          <div>
+            <div class="activity-text"><strong>Stock bajo</strong> en Cámara IP Dahua 2MP</div>
+            <div class="activity-time">Hace 1 hora</div>
+          </div>
+        </div>
+        <div class="activity-item">
+          <div class="activity-dot" style="background:var(--error-bg); color:var(--error);"><i class="fa-solid fa-xmark"></i></div>
+          <div>
+            <div class="activity-text"><strong>Reserva #118</strong> cancelada por el cliente</div>
+            <div class="activity-time">Hace 3 horas</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-head"><h3>Últimas reservas</h3></div>
+        <table>
+          <thead><tr><th>Cliente</th><th>Estado</th></tr></thead>
+          <tbody>
+            <tr><td><div class="cell-main">María Rojas</div><div class="cell-sub">Instalación cámaras</div></td><td><span class="status-pill ok">Aprobada</span></td></tr>
+            <tr><td><div class="cell-main">Jorge Lazo</div><div class="cell-sub">Mant. alarma</div></td><td><span class="status-pill pending">Pendiente</span></td></tr>
+            <tr><td><div class="cell-main">Ana Ccama</div><div class="cell-sub">Instalación cerco</div></td><td><span class="status-pill ok">Aprobada</span></td></tr>
+            <tr><td><div class="cell-main">Luis Ponce</div><div class="cell-sub">Revisión técnica</div></td><td><span class="status-pill cancel">Cancelada</span></td></tr>
+            <tr><td><div class="cell-main">Rosa Injante</div><div class="cell-sub">Instalación cámaras</div></td><td><span class="status-pill pending">Pendiente</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="panel">
+        <div class="panel-head"><h3>Productos más vendidos</h3></div>
+        <div class="prod-row">
+          <div class="prod-thumb"><i class="fa-solid fa-video"></i></div>
+          <div style="flex:1;">
+            <div class="cell-main">Cámara IP Dahua 2MP</div>
+            <div class="prod-bar-bg"><div class="prod-bar" style="width:88%;"></div></div>
+          </div>
+          <div class="cell-sub">88%</div>
+        </div>
+        <div class="prod-row">
+          <div class="prod-thumb"><i class="fa-solid fa-shield-halved"></i></div>
+          <div style="flex:1;">
+            <div class="cell-main">Alarma perimetral GX-4</div>
+            <div class="prod-bar-bg"><div class="prod-bar" style="width:71%;"></div></div>
+          </div>
+          <div class="cell-sub">71%</div>
+        </div>
+        <div class="prod-row">
+          <div class="prod-thumb"><i class="fa-solid fa-lock"></i></div>
+          <div style="flex:1;">
+            <div class="cell-main">Cerradura biométrica</div>
+            <div class="prod-bar-bg"><div class="prod-bar" style="width:64%;"></div></div>
+          </div>
+          <div class="cell-sub">64%</div>
+        </div>
+        <div class="prod-row">
+          <div class="prod-thumb"><i class="fa-solid fa-plug"></i></div>
+          <div style="flex:1;">
+            <div class="cell-main">Fuente regulada 12V</div>
+            <div class="prod-bar-bg"><div class="prod-bar" style="width:52%;"></div></div>
+          </div>
+          <div class="cell-sub">52%</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="app-footer">
+    <span>© 2026 Centro Electrónico Conmaquel Ingenieros E.I.R.L.</span>
+    <span>Sistema de Gestión Integral · v1.0</span>
+  </footer>
+</div>
+
+<script>
+  document.getElementById('menuToggle').addEventListener('click', function(){
+    document.getElementById('sidebar').classList.toggle('open');
+  });
+  document.querySelectorAll('.nav-item').forEach(function(item){
+    if(item.classList.contains('logout')) return;
+    item.addEventListener('click', function(){
+      document.querySelectorAll('.nav-item').forEach(function(i){ i.classList.remove('active'); });
+      item.classList.add('active');
+    });
+  });
+
+  const salesCtx = document.getElementById('salesChart');
+  new Chart(salesCtx, {
+    type: 'line',
+    data: {
+      labels: ['Ene','Feb','Mar','Abr','May','Jun','Jul'],
+      datasets: [{
+        label: 'Ventas (S/)',
+        data: [28500, 31200, 29800, 35600, 40100, 44300, 48230],
+        borderColor: '#2C5AA0',
+        backgroundColor: 'rgba(44,90,160,0.08)',
+        borderWidth: 2.5,
+        pointRadius: 3,
+        pointBackgroundColor: '#2C5AA0',
+        tension: 0.35,
+        fill: true
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: { legend: { display: false } },
+      scales: {
+        y: { grid: { color: '#EEF1F7' }, ticks: { callback: v => 'S/ ' + (v/1000) + 'k' } },
+        x: { grid: { display: false } }
+      }
+    }
+  });
+
+  const catCtx = document.getElementById('categoryChart');
+  new Chart(catCtx, {
+    type: 'doughnut',
+    data: {
+      labels: ['Seguridad','Electrónica','Accesorios','Servicios'],
+      datasets: [{
+        data: [42, 28, 18, 12],
+        backgroundColor: ['#12305F','#2C5AA0','#7CA6E0','#D8E3F5'],
+        borderWidth: 0
+      }]
+    },
+    options: {
+      responsive: true,
+      cutout: '68%',
+      plugins: { legend: { display: false } }
+    }
+  });
+</script>
+</body>
+</html>
 
