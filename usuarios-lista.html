@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Usuarios · Conmaquel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+<link href="assets/css/style.css" rel="stylesheet">
+</head>
+<body>
+<div class="cq-shell">
+  <aside class="cq-sidebar">
+    <div class="cq-brand"><div class="cq-brand-mark">CQ</div><div><strong>Conmaquel</strong><small>Panel administrativo</small></div></div>
+    <nav class="cq-nav">
+      <div class="cq-nav-section-title">Principal</div>
+      <a href="dashboard.html" class="cq-nav-link"><i class="fa-solid fa-gauge-high"></i><span>Dashboard</span></a>
+      <div class="cq-nav-section-title">Gestión</div>
+      <a href="usuarios-lista.html" class="cq-nav-link active"><i class="fa-solid fa-users"></i><span>Usuarios</span></a>
+      <a href="productos-lista.html" class="cq-nav-link"><i class="fa-solid fa-box"></i><span>Productos</span></a>
+      <a href="categorias-lista.html" class="cq-nav-link"><i class="fa-solid fa-tags"></i><span>Categorías</span></a>
+      <a href="inventario-stock.html" class="cq-nav-link"><i class="fa-solid fa-warehouse"></i><span>Inventario</span></a>
+      <a href="reservas-lista.html" class="cq-nav-link"><i class="fa-solid fa-calendar-check"></i><span>Reservas</span><span class="badge rounded-pill bg-danger">5</span></a>
+      <a href="ventas-pos.html" class="cq-nav-link"><i class="fa-solid fa-cash-register"></i><span>Ventas</span></a>
+      <a href="clientes-lista.html" class="cq-nav-link"><i class="fa-solid fa-address-book"></i><span>Clientes</span></a>
+      <div class="cq-nav-section-title">Análisis</div>
+      <a href="reportes.html" class="cq-nav-link"><i class="fa-solid fa-chart-column"></i><span>Reportes</span></a>
+      <div class="cq-nav-section-title">Sistema</div>
+      <a href="configuracion.html" class="cq-nav-link"><i class="fa-solid fa-gear"></i><span>Configuración</span></a>
+    </nav>
+    <div class="cq-sidebar-footer"><a href="login.html" class="cq-nav-link logout"><i class="fa-solid fa-right-from-bracket"></i><span>Cerrar sesión</span></a></div>
+  </aside>
+
+  <div class="cq-main">
+    <header class="cq-topbar">
+      <button class="cq-icon-btn d-none d-lg-flex" data-action="toggle-sidebar"><i class="fa-solid fa-bars"></i></button>
+      <button class="cq-icon-btn d-lg-none" data-action="toggle-mobile-nav"><i class="fa-solid fa-bars"></i></button>
+      <div class="cq-search"><i class="fa-solid fa-magnifying-glass"></i><input type="search" placeholder="Buscar productos, clientes, reservas…"></div>
+      <div class="cq-topbar-actions">
+        <button class="cq-icon-btn" data-action="toggle-theme"><i class="fa-solid fa-moon" data-theme-icon></i></button>
+        <button class="cq-icon-btn"><i class="fa-regular fa-bell"></i><span class="dot"></span></button>
+        <div class="dropdown">
+          <button class="cq-user-btn dropdown-toggle" data-bs-toggle="dropdown"><div class="cq-avatar">RS</div><div class="d-none d-md-block text-start"><div class="cq-user-name">Rosa Salazar</div><div class="cq-user-role">Administradora</div></div></button>
+          <ul class="dropdown-menu dropdown-menu-end"><li><a class="dropdown-item text-danger" href="login.html"><i class="fa-solid fa-right-from-bracket me-2"></i>Cerrar sesión</a></li></ul>
+        </div>
+      </div>
+    </header>
+
+    <main class="cq-content">
+      <div class="cq-breadcrumb"><a href="dashboard.html">Inicio</a><span class="sep">/</span><span>Usuarios</span></div>
+      <div class="cq-page-head">
+        <div><h1>Usuarios</h1><p>Administra las cuentas y permisos del personal de Conmaquel.</p></div>
+        <div class="d-flex gap-2">
+          <button class="btn btn-cq-outline"><i class="fa-solid fa-file-arrow-down me-2"></i>Exportar</button>
+          <a href="usuarios-registrar.html" class="btn btn-cq-primary"><i class="fa-solid fa-plus me-2"></i>Nuevo usuario</a>
+        </div>
+      </div>
+
+      <!-- Resumen por rol -->
+      <div class="row g-3 mb-4">
+        <div class="col-6 col-xl-3">
+          <div class="cq-kpi"><div class="cq-kpi-icon" style="background:var(--cq-primary-light);color:var(--cq-primary);"><i class="fa-solid fa-user-shield"></i></div>
+            <div><div class="cq-kpi-value">2</div><div class="cq-kpi-label">Administradores</div></div></div>
+        </div>
+        <div class="col-6 col-xl-3">
+          <div class="cq-kpi"><div class="cq-kpi-icon" style="background:var(--cq-info-bg);color:var(--cq-info);"><i class="fa-solid fa-cash-register"></i></div>
+            <div><div class="cq-kpi-value">4</div><div class="cq-kpi-label">Ventas / atención</div></div></div>
+        </div>
+        <div class="col-6 col-xl-3">
+          <div class="cq-kpi"><div class="cq-kpi-icon" style="background:var(--cq-warning-bg);color:var(--cq-warning);"><i class="fa-solid fa-screwdriver-wrench"></i></div>
+            <div><div class="cq-kpi-value">5</div><div class="cq-kpi-label">Servicio técnico</div></div></div>
+        </div>
+        <div class="col-6 col-xl-3">
+          <div class="cq-kpi"><div class="cq-kpi-icon" style="background:var(--cq-success-bg);color:var(--cq-success);"><i class="fa-solid fa-warehouse"></i></div>
+            <div><div class="cq-kpi-value">2</div><div class="cq-kpi-label">Almacén / inventario</div></div></div>
+        </div>
+      </div>
+
+      <div class="cq-card">
+        <div class="cq-table-toolbar">
+          <div class="cq-search-sm"><i class="fa-solid fa-magnifying-glass"></i><input type="search" placeholder="Buscar por nombre o correo"></div>
+          <select class="form-select form-select-sm" style="width:auto;">
+            <option>Todos los roles</option>
+            <option>Administrador</option>
+            <option>Ventas y atención</option>
+            <option>Servicio técnico</option>
+            <option>Almacén</option>
+          </select>
+          <select class="form-select form-select-sm" style="width:auto;">
+            <option>Todos los estados</option>
+            <option>Activo</option>
+            <option>Inactivo</option>
+          </select>
+          <button class="btn btn-cq-outline btn-sm ms-auto"><i class="fa-solid fa-arrow-down-short-wide me-1"></i> Ordenar</button>
+        </div>
+
+        <div class="table-responsive">
+          <table class="cq-table">
+            <thead>
+              <tr>
+                <th><input type="checkbox" class="form-check-input"></th>
+                <th>Usuario</th><th>Correo</th><th>Rol</th><th>Último acceso</th><th>Estado</th><th class="text-end">Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><input type="checkbox" class="form-check-input"></td>
+                <td><div class="d-flex align-items-center gap-2">
+                  <div class="cq-avatar" style="width:32px;height:32px;font-size:.72rem;">RS</div>
+                  <div><div class="fw-semibold">Rosa Salazar</div><div class="small text-muted">ID: USR-0001</div></div>
+                </div></td>
+                <td>rosa.salazar@conmaquel.com</td>
+                <td><span class="cq-badge info">Administrador</span></td>
+                <td>Hoy, 08:42 am</td>
+                <td><span class="cq-badge success">Activo</span></td>
+                <td class="text-end"><div class="cq-row-actions justify-content-end">
+                  <a href="usuarios-detalle.html" class="cq-icon-btn" title="Ver"><i class="fa-regular fa-eye"></i></a>
+                  <a href="usuarios-registrar.html" class="cq-icon-btn" title="Editar"><i class="fa-regular fa-pen-to-square"></i></a>
+                  <button class="cq-icon-btn text-danger" title="Eliminar" data-action="confirm-delete" data-name="Rosa Salazar"><i class="fa-regular fa-trash-can"></i></button>
+                </div></td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" class="form-check-input"></td>
+                <td><div class="d-flex align-items-center gap-2">
+                  <div class="cq-avatar" style="width:32px;height:32px;font-size:.72rem;">JH</div>
+                  <div><div class="fw-semibold">Jaime Huaytalla</div><div class="small text-muted">ID: USR-0002</div></div>
+                </div></td>
+                <td>jaime.huaytalla@conmaquel.com</td>
+                <td><span class="cq-badge info">Administrador</span></td>
+                <td>Ayer, 06:15 pm</td>
+                <td><span class="cq-badge success">Activo</span></td>
+                <td class="text-end"><div class="cq-row-actions justify-content-end">
+                  <a href="usuarios-detalle.html" class="cq-icon-btn"><i class="fa-regular fa-eye"></i></a>
+                  <a href="usuarios-registrar.html" class="cq-icon-btn"><i class="fa-regular fa-pen-to-square"></i></a>
+                  <button class="cq-icon-btn text-danger" data-action="confirm-delete" data-name="Jaime Huaytalla"><i class="fa-regular fa-trash-can"></i></button>
+                </div></td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" class="form-check-input"></td>
+                <td><div class="d-flex align-items-center gap-2">
+                  <div class="cq-avatar" style="width:32px;height:32px;font-size:.72rem;">MQ</div>
+                  <div><div class="fw-semibold">Marisol Quiroz</div><div class="small text-muted">ID: USR-0007</div></div>
+                </div></td>
+                <td>marisol.quiroz@conmaquel.com</td>
+                <td><span class="cq-badge neutral">Ventas y atención</span></td>
+                <td>Hoy, 09:10 am</td>
+                <td><span class="cq-badge success">Activo</span></td>
+                <td class="text-end"><div class="cq-row-actions justify-content-end">
+                  <a href="usuarios-detalle.html" class="cq-icon-btn"><i class="fa-regular fa-eye"></i></a>
+                  <a href="usuarios-registrar.html" class="cq-icon-btn"><i class="fa-regular fa-pen-to-square"></i></a>
+                  <button class="cq-icon-btn text-danger" data-action="confirm-delete" data-name="Marisol Quiroz"><i class="fa-regular fa-trash-can"></i></button>
+                </div></td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" class="form-check-input"></td>
+                <td><div class="d-flex align-items-center gap-2">
+                  <div class="cq-avatar" style="width:32px;height:32px;font-size:.72rem;">JH</div>
+                  <div><div class="fw-semibold">José Huamán</div><div class="small text-muted">ID: USR-0011</div></div>
+                </div></td>
+                <td>jose.huaman@conmaquel.com</td>
+                <td><span class="cq-badge warning">Servicio técnico</span></td>
+                <td>Hace 3 días</td>
+                <td><span class="cq-badge success">Activo</span></td>
+                <td class="text-end"><div class="cq-row-actions justify-content-end">
+                  <a href="usuarios-detalle.html" class="cq-icon-btn"><i class="fa-regular fa-eye"></i></a>
+                  <a href="usuarios-registrar.html" class="cq-icon-btn"><i class="fa-regular fa-pen-to-square"></i></a>
+                  <button class="cq-icon-btn text-danger" data-action="confirm-delete" data-name="José Huamán"><i class="fa-regular fa-trash-can"></i></button>
+                </div></td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" class="form-check-input"></td>
+                <td><div class="d-flex align-items-center gap-2">
+                  <div class="cq-avatar" style="width:32px;height:32px;font-size:.72rem;">LF</div>
+                  <div><div class="fw-semibold">Lucía Fernández</div><div class="small text-muted">ID: USR-0014</div></div>
+                </div></td>
+                <td>lucia.fernandez@conmaquel.com</td>
+                <td><span class="cq-badge success">Almacén</span></td>
+                <td>Hace 2 semanas</td>
+                <td><span class="cq-badge neutral">Inactivo</span></td>
+                <td class="text-end"><div class="cq-row-actions justify-content-end">
+                  <a href="usuarios-detalle.html" class="cq-icon-btn"><i class="fa-regular fa-eye"></i></a>
+                  <a href="usuarios-registrar.html" class="cq-icon-btn"><i class="fa-regular fa-pen-to-square"></i></a>
+                  <button class="cq-icon-btn text-danger" data-action="confirm-delete" data-name="Lucía Fernández"><i class="fa-regular fa-trash-can"></i></button>
+                </div></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="cq-table-footer">
+          <span class="small text-muted">Mostrando 1–5 de 13 usuarios</span>
+          <nav><ul class="pagination pagination-sm cq-pagination mb-0">
+            <li class="page-item disabled"><a class="page-link" href="#">Anterior</a></li>
+            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item"><a class="page-link" href="#">Siguiente</a></li>
+          </ul></nav>
+        </div>
+      </div>
+    </main>
+    <footer class="cq-footer"><span>© 2026 Conmaquel. Todos los derechos reservados.</span><span>Versión 1.0.0</span></footer>
+  </div>
+</div>
+
+<div class="modal fade" id="modalConfirmarEliminar" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered"><div class="modal-content"><div class="modal-body text-center p-4">
+    <div class="mb-3" style="width:56px;height:56px;border-radius:50%;background:var(--cq-danger-bg);display:flex;align-items:center;justify-content:center;margin:0 auto;"><i class="fa-solid fa-user-slash text-danger fs-5"></i></div>
+    <h6>¿Eliminar este usuario?</h6>
+    <p class="text-muted small">Estás a punto de eliminar a <strong data-target-name></strong>. Perderá acceso al sistema de inmediato.</p>
+    <div class="d-flex gap-2 justify-content-center mt-3">
+      <button class="btn btn-cq-outline" data-bs-dismiss="modal">Cancelar</button>
+      <button class="btn btn-cq-danger" data-bs-dismiss="modal">Sí, eliminar</button>
+    </div>
+  </div></div></div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/app.js"></script>
+</body>
+</html>
