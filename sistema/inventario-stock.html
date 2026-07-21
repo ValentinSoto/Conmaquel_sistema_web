@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Inventario · Stock · Conmaquel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+<link href="assets/css/style.css" rel="stylesheet">
+</head>
+<body>
+<div class="cq-shell">
+  <aside class="cq-sidebar">
+    <div class="cq-brand"><div class="cq-brand-mark">CQ</div><div><strong>Conmaquel</strong><small>Panel administrativo</small></div></div>
+    <nav class="cq-nav">
+      <div class="cq-nav-section-title">Principal</div>
+      <a href="dashboard.html" class="cq-nav-link"><i class="fa-solid fa-gauge-high"></i><span>Dashboard</span></a>
+      <div class="cq-nav-section-title">Gestión</div>
+      <a href="usuarios-lista.html" class="cq-nav-link"><i class="fa-solid fa-users"></i><span>Usuarios</span></a>
+      <a href="productos-lista.html" class="cq-nav-link"><i class="fa-solid fa-box"></i><span>Productos</span></a>
+      <a href="categorias-lista.html" class="cq-nav-link"><i class="fa-solid fa-tags"></i><span>Categorías</span></a>
+      <a href="inventario-stock.html" class="cq-nav-link active"><i class="fa-solid fa-warehouse"></i><span>Inventario</span></a>
+      <a href="reservas-lista.html" class="cq-nav-link"><i class="fa-solid fa-calendar-check"></i><span>Reservas</span><span class="badge rounded-pill bg-danger">5</span></a>
+      <a href="ventas-pos.html" class="cq-nav-link"><i class="fa-solid fa-cash-register"></i><span>Ventas</span></a>
+      <a href="clientes-lista.html" class="cq-nav-link"><i class="fa-solid fa-address-book"></i><span>Clientes</span></a>
+      <div class="cq-nav-section-title">Análisis</div>
+      <a href="reportes.html" class="cq-nav-link"><i class="fa-solid fa-chart-column"></i><span>Reportes</span></a>
+      <div class="cq-nav-section-title">Sistema</div>
+      <a href="configuracion.html" class="cq-nav-link"><i class="fa-solid fa-gear"></i><span>Configuración</span></a>
+    </nav>
+    <div class="cq-sidebar-footer"><a href="login.html" class="cq-nav-link logout"><i class="fa-solid fa-right-from-bracket"></i><span>Cerrar sesión</span></a></div>
+  </aside>
+
+  <div class="cq-main">
+    <header class="cq-topbar">
+      <button class="cq-icon-btn d-none d-lg-flex" data-action="toggle-sidebar"><i class="fa-solid fa-bars"></i></button>
+      <button class="cq-icon-btn d-lg-none" data-action="toggle-mobile-nav"><i class="fa-solid fa-bars"></i></button>
+      <div class="cq-search"><i class="fa-solid fa-magnifying-glass"></i><input type="search" placeholder="Buscar productos, clientes, reservas…"></div>
+      <div class="cq-topbar-actions">
+        <button class="cq-icon-btn" data-action="toggle-theme"><i class="fa-solid fa-moon" data-theme-icon></i></button>
+        <button class="cq-icon-btn"><i class="fa-regular fa-bell"></i><span class="dot"></span></button>
+        <div class="dropdown">
+          <button class="cq-user-btn dropdown-toggle" data-bs-toggle="dropdown"><div class="cq-avatar">RS</div><div class="d-none d-md-block text-start"><div class="cq-user-name">Rosa Salazar</div><div class="cq-user-role">Administradora</div></div></button>
+          <ul class="dropdown-menu dropdown-menu-end"><li><a class="dropdown-item text-danger" href="login.html"><i class="fa-solid fa-right-from-bracket me-2"></i>Cerrar sesión</a></li></ul>
+        </div>
+      </div>
+    </header>
+
+    <main class="cq-content">
+      <div class="cq-breadcrumb"><a href="dashboard.html">Inicio</a><span class="sep">/</span><a href="inventario-stock.html">Inventario</a><span class="sep">/</span><span>Stock</span></div>
+      <div class="cq-page-head">
+        <div><h1>Inventario</h1><p>Consulta el stock en tiempo real, por lote y fecha de vencimiento.</p></div>
+        <div class="d-flex gap-2">
+          <a href="inventario-entradas.html" class="btn btn-cq-outline"><i class="fa-solid fa-arrow-down me-2"></i>Registrar entrada</a>
+          <a href="inventario-salidas.html" class="btn btn-cq-primary"><i class="fa-solid fa-arrow-up me-2"></i>Registrar salida</a>
+        </div>
+      </div>
+
+      <!-- Sub-navegación del módulo -->
+      <ul class="nav nav-tabs mb-3" style="border-bottom:1px solid var(--cq-border);">
+        <li class="nav-item"><a class="nav-link active" href="inventario-stock.html">Stock</a></li>
+        <li class="nav-item"><a class="nav-link" href="inventario-entradas.html">Entradas</a></li>
+        <li class="nav-item"><a class="nav-link" href="inventario-salidas.html">Salidas</a></li>
+        <li class="nav-item"><a class="nav-link" href="inventario-kardex.html">Kardex</a></li>
+      </ul>
+
+      <div class="row g-3 mb-4">
+        <div class="col-6 col-xl-3">
+          <div class="cq-kpi"><div class="cq-kpi-icon" style="background:var(--cq-primary-light);color:var(--cq-primary);"><i class="fa-solid fa-boxes-stacked"></i></div>
+            <div><div class="cq-kpi-value">312</div><div class="cq-kpi-label">SKU en catálogo</div></div></div>
+        </div>
+        <div class="col-6 col-xl-3">
+          <div class="cq-kpi"><div class="cq-kpi-icon" style="background:var(--cq-info-bg);color:var(--cq-info);"><i class="fa-solid fa-cubes"></i></div>
+            <div><div class="cq-kpi-value">4,860</div><div class="cq-kpi-label">Unidades en almacén</div></div></div>
+        </div>
+        <div class="col-6 col-xl-3">
+          <div class="cq-kpi"><div class="cq-kpi-icon" style="background:var(--cq-warning-bg);color:var(--cq-warning);"><i class="fa-solid fa-triangle-exclamation"></i></div>
+            <div><div class="cq-kpi-value">6</div><div class="cq-kpi-label">Productos con stock bajo</div></div></div>
+        </div>
+        <div class="col-6 col-xl-3">
+          <div class="cq-kpi"><div class="cq-kpi-icon" style="background:var(--cq-danger-bg);color:var(--cq-danger);"><i class="fa-solid fa-hourglass-end"></i></div>
+            <div><div class="cq-kpi-value">3</div><div class="cq-kpi-label">Lotes próximos a vencer</div></div></div>
+        </div>
+      </div>
+
+      <!-- Alerta de vencimientos -->
+      <div class="cq-card mb-3" style="border-left:4px solid var(--cq-warning);">
+        <div class="cq-card-body d-flex align-items-start gap-3 py-3">
+          <i class="fa-solid fa-triangle-exclamation" style="color:var(--cq-warning);font-size:1.2rem;margin-top:2px;"></i>
+          <div>
+            <div class="fw-semibold small">Tienes 3 lotes próximos a vencer en los próximos 30 días</div>
+            <div class="text-muted small">Aplica la política FIFO: prioriza la salida de los lotes con fecha de vencimiento más próxima para reducir pérdidas.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cq-card">
+        <div class="cq-table-toolbar">
+          <div class="cq-search-sm"><i class="fa-solid fa-magnifying-glass"></i><input type="search" placeholder="Buscar por nombre, SKU o lote"></div>
+          <select class="form-select form-select-sm" style="width:auto;">
+            <option>Todas las categorías</option>
+            <option>Seguridad electrónica</option>
+            <option>Informática</option>
+            <option>Electrónica general</option>
+          </select>
+          <select class="form-select form-select-sm" style="width:auto;">
+            <option>Todos los niveles</option>
+            <option>Stock normal</option>
+            <option>Stock bajo</option>
+            <option>Sin stock</option>
+            <option>Por vencer</option>
+          </select>
+          <div class="ms-auto d-flex gap-2">
+            <button class="btn btn-cq-outline btn-sm"><i class="fa-solid fa-file-excel me-2"></i>Excel</button>
+            <button class="btn btn-cq-outline btn-sm"><i class="fa-solid fa-file-pdf me-2"></i>PDF</button>
+          </div>
+        </div>
+
+        <div class="table-responsive">
+          <table class="cq-table">
+            <thead>
+              <tr>
+                <th>Producto</th><th>SKU</th><th>Lote</th><th>Vencimiento</th><th>Método</th><th>Stock actual</th><th>Stock mínimo</th><th>Estado</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><div class="fw-semibold">Batería de respaldo UPS 12V 7Ah</div></td>
+                <td>CQ-ELE-0104</td>
+                <td>LT-2025-0912</td>
+                <td><span class="cq-badge danger"><i class="fa-solid fa-hourglass-end"></i>04 ago 2026</span></td>
+                <td><span class="cq-badge neutral">FIFO</span></td>
+                <td>9</td>
+                <td>15</td>
+                <td><span class="cq-badge warning">Stock bajo</span></td>
+              </tr>
+              <tr>
+                <td><div class="fw-semibold">Batería de respaldo UPS 12V 7Ah</div></td>
+                <td>CQ-ELE-0104</td>
+                <td>LT-2026-0301</td>
+                <td><span class="cq-badge warning"><i class="fa-solid fa-hourglass-half"></i>19 nov 2026</span></td>
+                <td><span class="cq-badge neutral">FIFO</span></td>
+                <td>24</td>
+                <td>—</td>
+                <td><span class="cq-badge success">Normal</span></td>
+              </tr>
+              <tr>
+                <td><div class="fw-semibold">Cámara de seguridad IP 4MP</div></td>
+                <td>CQ-SEG-0231</td>
+                <td>LT-2026-0605</td>
+                <td><span class="cq-badge neutral">No aplica</span></td>
+                <td><span class="cq-badge neutral">—</span></td>
+                <td>184</td>
+                <td>30</td>
+                <td><span class="cq-badge success">Normal</span></td>
+              </tr>
+              <tr>
+                <td><div class="fw-semibold">Kit de alarma inalámbrica</div></td>
+                <td>CQ-SEG-0089</td>
+                <td>LT-2026-0417</td>
+                <td><span class="cq-badge neutral">No aplica</span></td>
+                <td><span class="cq-badge neutral">—</span></td>
+                <td>18</td>
+                <td>10</td>
+                <td><span class="cq-badge success">Normal</span></td>
+              </tr>
+              <tr>
+                <td><div class="fw-semibold">Disco duro externo 2TB</div></td>
+                <td>CQ-INF-0057</td>
+                <td>LT-2025-1102</td>
+                <td><span class="cq-badge neutral">No aplica</span></td>
+                <td><span class="cq-badge neutral">—</span></td>
+                <td>0</td>
+                <td>8</td>
+                <td><span class="cq-badge danger">Sin stock</span></td>
+              </tr>
+              <tr>
+                <td><div class="fw-semibold">Cinta adhesiva termocontráctil</div></td>
+                <td>CQ-ACC-0033</td>
+                <td>LT-2025-0810</td>
+                <td><span class="cq-badge danger"><i class="fa-solid fa-hourglass-end"></i>28 jul 2026</span></td>
+                <td><span class="cq-badge neutral">FIFO</span></td>
+                <td>14</td>
+                <td>20</td>
+                <td><span class="cq-badge warning">Stock bajo</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="cq-table-footer">
+          <span class="small text-muted">Mostrando 6 de 187 lotes</span>
+          <nav><ul class="pagination pagination-sm cq-pagination mb-0">
+            <li class="page-item disabled"><a class="page-link" href="#">Anterior</a></li>
+            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item"><a class="page-link" href="#">Siguiente</a></li>
+          </ul></nav>
+        </div>
+      </div>
+    </main>
+    <footer class="cq-footer"><span>© 2026 Conmaquel. Todos los derechos reservados.</span><span>Versión 1.0.0</span></footer>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/app.js"></script>
+</body>
+</html>
