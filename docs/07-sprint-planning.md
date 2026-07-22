@@ -40,6 +40,11 @@ El proyecto se organiza en un Sprint 0 de preparación y cuatro sprints de desar
 | **Sprint 3** — Gestión de inventario | 10 días (semana 7–9) | Módulo de inventario FIFO validado | Módulo de inventario con alertas de vencimiento y control de stock |
 | **Sprint 4** — Informes, seguridad e implementación | 8 días (semana 9–11) | Sistema desplegado en ambiente de producción | Sistema integrado con reportes, control de accesos por rol y despliegue final |
 
+# Figura
+
+## Figura 9.Cronograma tipo Gantt del proyecto
+
+![Arquitectura del Sistema](../assets/gantt/cronograma-gantt.png)
 *Figura 9. Cronograma tipo Gantt del proyecto (Sprint 0 a Sprint 4, 54 días hábiles distribuidos en 11 semanas).*
 
 ## 7.5 Sprint Planning de los sprints 1 a 4
