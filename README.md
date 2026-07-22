@@ -123,6 +123,7 @@ README.md
 # 👨‍💻 Autor
 
 **Valentín Soto Barrientos**
+
 **Samir Flores Estrella**
 
 Universidad Peruana Los Andes
