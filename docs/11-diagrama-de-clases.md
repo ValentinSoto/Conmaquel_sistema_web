@@ -1,5 +1,6 @@
 # 11. Diagrama de Clases (UML)
 
+![Arquitectura del Sistema](../assets/uml/diagrama-clases-uml.png)
 *Figura 7. Diagrama de Clases UML del sistema Conmaquel.*
 
 ## 11.1 Clases principales y su estructura
