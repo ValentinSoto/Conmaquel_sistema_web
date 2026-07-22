@@ -12,6 +12,7 @@ Dado que el proyecto se gestiona bajo Scrum, el seguimiento se realiza principal
 | **Densidad de defectos** | N.º de defectos críticos detectados por sprint | Más de 5 defectos críticos por sprint | Equipo técnico / QA | Por sprint |
 | **Satisfacción del cliente** | Nivel de conformidad del cliente en el Sprint Review (escala 1–5) | Calificación menor a 3 | Product Owner | Por sprint |
 
+![Arquitectura del Sistema](../assets/scrum/chart-scrum.png)
 *Figura 10. Burndown Chart de Scrum.*
 
 > Como referencia complementaria, en caso el proyecto requiera reportar avance a nivel gerencial en términos de costo, puede emplearse el **Valor Ganado (EVM)** mediante los indicadores PV (valor planificado), EV (valor ganado), AC (costo real) y el índice SPI (EV/PV). Sin embargo, para un proyecto ágil de este tamaño se prioriza el uso de las métricas Scrum descritas, por ser más representativas del avance real del producto.
