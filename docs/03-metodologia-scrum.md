@@ -53,7 +53,11 @@ Scrum permite:
 - Alineación constante con las necesidades del negocio a lo largo del proceso.
 - Mayor capacidad para manejar cambios en los requerimientos de manera ágil.
 - Un producto final de alta calidad, entregado de manera oportuna.
+# Figura
 
+## Figura 1. Diagrama del proceso Scrum
+
+![Arquitectura del Sistema](../assets/scrum/proceso-scrum.png)
 *Figura 1. Diagrama del proceso Scrum: Product Backlog → Sprint Planning → Sprint Backlog → Sprint (Daily Scrum) → Incremento → Sprint Review → Sprint Retrospective.*
 
 ## 3.4 Roles Scrum en el proyecto
