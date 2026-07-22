@@ -17,7 +17,7 @@ El presente proyecto consiste en el desarrollo de un **Sistema Web de Gestión I
 # 📋 Tabla de Contenido
 
 - Introducción
-- Planteamiento del problema
+- Arquitectura del sistema
 - Metodología Scrum
 - Levantamiento de requerimientos
 - Historias de Usuario
@@ -87,7 +87,7 @@ README.md
 | Documento | Estado |
 |------------|---------|
 | Introducción | ✅ |
-| Planteamiento del problema | ✅ |
+| Arquitectura del sistema | ✅ |
 | Metodología Scrum | ✅ |
 | Requerimientos | ✅ |
 | Historias de Usuario | ✅ |
@@ -123,6 +123,7 @@ README.md
 # 👨‍💻 Autor
 
 **Valentín Soto Barrientos**
+**Samir Flores Estrella**
 
 Universidad Peruana Los Andes
 
