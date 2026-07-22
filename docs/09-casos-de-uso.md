@@ -10,7 +10,9 @@
 | **Bodega** | Encargado de almacén: controla entradas, salidas, stock y fechas de vencimiento. |
 | **Cliente** | Usuario externo: consulta información, realiza reservas y verifica el estado de sus servicios. |
 
-## 9.2 Diagrama de casos de uso (descripción textual)
+## 9.2 Diagrama de casos de uso
+
+![Arquitectura del Sistema](../assets/uml/diagrama-uml.png)
 
 *Figura 4. Diagrama de Casos de Uso UML.*
 
