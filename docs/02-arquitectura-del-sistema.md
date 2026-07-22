@@ -17,6 +17,13 @@ El sistema se organiza en cuatro grandes procesos que se comunican entre sí a t
 | **Gestión de Inventario** | Controla entradas y salidas de productos, registra lotes, fechas de vencimiento y aplica el método FIFO para reducir pérdidas. |
 | **Gestión de Usuarios y Accesos** | Define perfiles de usuario con permisos diferenciados según el rol dentro de la empresa. |
 
+# Figura
+
+## Figura 2. Arquitectura del Sistema
+
+![Arquitectura del Sistema](../assets/uml/arquitectura-del-sistema.png)
+
+**Figura 2.** Arquitectura del Sistema (Cliente – Servidor – Base de datos).
 *Figura 2. Arquitectura del sistema (diagrama de bloques): capa de presentación (sitio público y panel administrativo) → capa de lógica de negocio (controladores PHP por módulo) → capa de datos (MySQL).*
 
 ## 2.3 Patrón arquitectónico
