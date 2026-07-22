@@ -25,6 +25,7 @@ Los procesos de negocio de Conmaquel se modelan siguiendo la notación estándar
                                                   (Fin)                        (Fin)
 ```
 
+![Arquitectura del Sistema](../assets/bpmn/flujo-reservas.png)
 *Figura 3 (detalle BPMN). Flujo del proceso de reservas.*
 
 ## 13.3 Proceso: Venta de productos (RF-03, RF-04, RF-11)
