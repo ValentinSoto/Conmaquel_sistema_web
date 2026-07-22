@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Recuperar contraseña · Conmaquel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+<link href="assets/css/style.css" rel="stylesheet">
+</head>
+<body>
+<div class="cq-auth-shell">
+  <div class="cq-auth-side d-none d-lg-flex">
+    <div style="position:relative;z-index:1;max-width:440px;">
+      <div class="d-flex align-items-center gap-2 mb-5"><div class="cq-brand-mark">CQ</div><strong style="font-size:1.2rem;">Conmaquel</strong></div>
+      <h1 style="font-size:2.1rem;line-height:1.25;">Recupera el acceso a tu cuenta en unos pasos.</h1>
+      <p style="color:#C7D3EA;" class="mt-3">Te enviaremos un enlace seguro a tu correo registrado para restablecer tu contraseña.</p>
+    </div>
+  </div>
+  <div class="cq-auth-form-wrap">
+    <a href="login.html" class="small text-muted mb-3 d-inline-block"><i class="fa-solid fa-arrow-left me-1"></i>Volver a iniciar sesión</a>
+    <h2 class="mb-1" style="font-size:1.5rem;">Recuperar contraseña</h2>
+    <p class="text-muted mb-4">Ingresa tu correo y te enviaremos las instrucciones.</p>
+    <form class="needs-validation" novalidate>
+      <div class="mb-4">
+        <label class="cq-form-label">Correo electrónico <span class="req">*</span></label>
+        <input type="email" class="form-control" placeholder="nombre@conmaquel.com" required>
+        <div class="invalid-feedback">Ingresa un correo válido.</div>
+      </div>
+      <button type="submit" class="btn btn-cq-primary w-100 py-2">Enviar instrucciones</button>
+    </form>
+    <div class="cq-toast mt-4 d-none" id="toastEnviado">
+      <i class="fa-solid fa-circle-check text-success mt-1"></i>
+      <div><strong>Correo enviado</strong><div class="small text-muted">Revisa tu bandeja de entrada para continuar con el restablecimiento.</div></div>
+    </div>
+  </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/app.js"></script>
+</body>
+</html>
