@@ -37,11 +37,11 @@ Conmaquel/
 
 | Inicio | Nosotros | Servicios |
 |:-------:|:---------:|:---------:|
-| ![](assets/img/Inicio.jpg) | ![](assets/img/Nosotros.jpg) | ![](assets/img/Servicios.jpg) |
+| ![](../assets/img/Inicio.jpg) | ![](../assets/img/Nosotros.jpg) | ![](../assets/img/Servicios.jpg) |
 
 | Catálogo | Contacto | Login | Recuperar contraseña |
 |:---------:|:--------:|:-----:|:--------------------:|
-| ![](assets/img/Catalogo.jpg) | ![](assets/img/Contacto.jpg) | ![](assets/img/Login.jpg) | ![](assets/img/Usuario.jpg) |
+| ![](../assets/img/Catalogo.jpg) | ![](../assets/img/Contacto.jpg) | ![](../assets/img/Login.jpg) |
 
 ---
 
@@ -49,19 +49,19 @@ Conmaquel/
 
 | Dashboard | Usuarios | Productos |
 |:---------:|:--------:|:---------:|
-| ![](assets/img/Inicio.jpg) | ![](assets/img/Usuarios.jpg) | ![](assets/img/Productos.jpg) |
+| ![](../assets/img/Inicio.jpg) | ![](../assets/img/Usuarios.jpg) | ![](../assets/img/Productos.jpg) |
 
 | Categorías | Inventario | Reservas |
 |:----------:|:----------:|:--------:|
-| ![](assets/img/Categoria.jpg) | ![](assets/img/Inventario.jpg) | ![](assets/img/Reserva.jpg) |
+| ![](../assets/img/Categoria.jpg) | ![](../assets/img/Inventario.jpg) | ![](../assets/img/Reserva.jpg) |
 
 | Ventas | Clientes | Reportes |
 |:------:|:---------:|:--------:|
-| ![](assets/img/Venta-pos.jpg) | ![](assets/img/Clientes.jpg) | ![](assets/img/Reportes.jpg) |
+| ![](../assets/img/Venta-pos.jpg) | ![](../assets/img/Clientes.jpg) | ![](../assets/img/Reportes.jpg) |
 
 | Configuración |
 |:-------------:|
-| ![](assets/img/Conf-usuario.jpg) |
+| ![](../assets/img/Conf-usuario.jpg) |
 
 2. **Capa de lógica de negocio**: controladores PHP agrupados por módulo, responsables de la validación de datos, aplicación de reglas de negocio (por ejemplo, el descuento FIFO en inventario) y comunicación con la base de datos.
 
