@@ -1,5 +1,6 @@
 # 12. Diagrama de Despliegue (UML)
 
+![Arquitectura del Sistema](../assets/uml/diagrama-despliegue-uml.png)
 *Figura 8. Diagrama de Despliegue UML del sistema Conmaquel.*
 
 ## 12.1 Nodos del despliegue
