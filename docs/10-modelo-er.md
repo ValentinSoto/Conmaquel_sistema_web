@@ -55,6 +55,11 @@ Para soportar todos los módulos del sistema (Usuarios, Productos, Categorías, 
 - Un **técnico** (usuario con rol Técnico) puede atender varios **servicios técnicos**, pero cada servicio tiene un solo responsable asignado.
 - Una **categoría** puede tener muchos **productos**, pero cada producto pertenece a una sola categoría.
 
+# Figura
+
+## Figura 6. Diagrama Entidad-Relación
+
+![Arquitectura del Sistema](../assets/scrum/diagrama-er.png)
 *Figura 6. Diagrama Entidad-Relación completo del sistema Conmaquel.*
 
 ## 10.6 Correspondencia con las pantallas del sistema
