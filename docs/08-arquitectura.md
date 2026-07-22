@@ -41,7 +41,7 @@ Conmaquel/
 
 | Catálogo | Contacto | Login | Recuperar contraseña |
 |:---------:|:--------:|:-----:|:--------------------:|
-| ![](../assets/img/Catalogo.jpg) | ![](../assets/img/Contacto.jpg) | ![](../assets/img/Login.jpg) |
+| ![](../assets/img/Catalogo.jpg) | ![](../assets/img/Contacto.jpg) | ![](../assets/img/Login.jpg) | ![](../assets/img/Recuperar.jpg) |
 
 ---
 
